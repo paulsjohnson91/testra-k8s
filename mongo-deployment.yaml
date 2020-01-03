@@ -31,7 +31,10 @@ spec:
       containers:
       - env:
         - name: ADMIN_PASS
-          value: 89*qcF$$P[
+          valueFrom:
+            secretKeyRef:
+              name: dev-db-secret
+              key: adminpassword
         - name: ADMIN_USER
           value: admin
         - name: APPLICATION_USER
