@@ -34,11 +34,17 @@ spec:
           value: 89*qcF$$P[
         - name: ADMIN_USER
           value: admin
-        - name: APPLICATION_DATABASE
-          value: testra
-        - name: APPLICATION_PASS
-          value: 89*qcC$$P[
         - name: APPLICATION_USER
+          valueFrom:
+            secretKeyRef:
+              name: dev-db-secret
+              key: username
+        - name: APPLICATION_PASS
+          valueFrom:
+            secretKeyRef:
+              name: dev-db-secret
+              key: password
+        - name: APPLICATION_DATABASE
           value: testra
         - name: AUTH
           value: "yes"
