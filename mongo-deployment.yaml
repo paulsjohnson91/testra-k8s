@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  type: LoadBalancer
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 (0c01309)
+  creationTimestamp: null
+  labels:
+    app: mongo
+  name: mongo
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - env:
+        - name: ADMIN_PASS
+          value: admin
+        - name: ADMIN_USER
+          value: admin
+        - name: APPLICATION_DATABASE
+          value: testra
+        - name: APPLICATION_PASS
+          value: password
+        - name: APPLICATION_USER
+          value: testra
+        - name: AUTH
+          value: "yes"
+        image: vepo/mongo
+        name: testra-mongo
+        ports:
+        - containerPort: 27017
+        resources: {}
+      restartPolicy: Always
+status: {}
