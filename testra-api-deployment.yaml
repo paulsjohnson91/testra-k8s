@@ -22,7 +22,7 @@ metadata:
     app: testra-api
   name: testra-api
 spec:
-  replicas: 1
+  replicas: 2
   strategy: {}
   selector:
     matchLabels:

@@ -3,13 +3,12 @@ kind: Service
 metadata:
   name: mongo
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: mongo
   ports:
     - protocol: TCP
       port: 27017
-      targetPort: 27017
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,11 +31,11 @@ spec:
       containers:
       - env:
         - name: ADMIN_PASS
-          value: admin
+          value: 89*qcF$$P[
         - name: ADMIN_USER
           value: admin
         - name: APPLICATION_DATABASE
-          value: 89*qcF$$P[
+          value: testra
         - name: APPLICATION_PASS
           value: 89*qcC$$P[
         - name: APPLICATION_USER
