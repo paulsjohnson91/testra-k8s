@@ -14,10 +14,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert
-    kompose.version: 1.16.0 (0c01309)
-  creationTimestamp: null
   labels:
     app: mongo
   name: mongo
@@ -40,9 +36,9 @@ spec:
         - name: ADMIN_USER
           value: admin
         - name: APPLICATION_DATABASE
-          value: testra
+          value: 89*qcF$$P[
         - name: APPLICATION_PASS
-          value: password
+          value: 89*qcC$$P[
         - name: APPLICATION_USER
           value: testra
         - name: AUTH

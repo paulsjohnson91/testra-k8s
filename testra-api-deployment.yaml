@@ -42,6 +42,10 @@ spec:
           value: mongo
         - name: MONGO_PORT
           value: "27017"
+        - name: MONGO_USER
+          value: testra
+        - name: MONGO_PASSWORD
+          value: 89*qcC$$P[
         image: testra/testra-api:1.0-m1
         name: testra-api
         ports:
