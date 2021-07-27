@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testra-web
+spec:
+  type: LoadBalancer
+  selector:
+    app: testra-web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.19.0 ()
+  creationTimestamp: null
+  labels:
+    app: testra-web
+  name: testra-web
+spec:
+  replicas: 1
+  strategy: {}
+  selector:
+    matchLabels:
+      app: testra-web
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.19.0 ()
+      creationTimestamp: null
+      labels:
+        app: testra-web
+    spec:
+      containers:
+        - env:
+            - name: TESTRA_API_URL
+              value: http://localhost:8080/api/v1
+          image: pauljohnson2sky/testra-web:1.0
+          name: testra-web
+          ports:
+            - containerPort: 80
+          resources: {}
+      restartPolicy: Always
+status: {}
